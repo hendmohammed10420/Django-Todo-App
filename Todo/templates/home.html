@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+                    {% comment %} {% extends 'base.html' %}
+{% block content %} {% endcomment %}
+   {% comment %} {% if massage %}
+         {{massage}} {% endcomment %}
+        {% comment %} {% else %}
+          <h1>  Hello World !</h1>
+        {% endif %} {% endcomment %}
+        <div class="container mt-4">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <h1>Welcome Todo App</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mb-4">
+              <a href="{% url 'create' %}" class="btn btn-primary">
+                <i class="fas fa-plus-circle"></i> Create Todo
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <ul class="list-group">
+                {% for todo in todos %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{% url 'detailed' todo.id %}">{{ todo.name }}</a>
+                    <div class="btn-group">
+                      <a href="{% url 'update' todo.id %}" class="btn btn-info">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                      <a href="{% url 'delete' todo.id %}" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      {% endblock content %}
